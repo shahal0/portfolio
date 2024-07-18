@@ -354,6 +354,9 @@ progress {
 output {
   display: inline-block;
 }
+.error{
+  background-color:red;
+}
 
 summary {
   display: list-item;
