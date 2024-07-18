@@ -299,7 +299,7 @@
             <p class="section-subtitle">How can you communicate?</p>
             <h6 class="section-title mb-5">Contact Me</h6>
             <!-- contact form -->
-            <form onsubmit="return validation()" action="https://api.web3forms.com/submit" method="POST" class="contact-form col-md-10 col-lg-8 m-auto">
+            <form id="form" action="https://api.web3forms.com/submit" method="POST" class="contact-form col-md-10 col-lg-8 m-auto">
                 <div class="form-row">
                     <div class="form-group col-sm-6">
                         <input type="hidden" name="access_key" value="c6bc6b87-bb9a-44f7-a93f-7677a770faa7">
@@ -357,34 +357,92 @@
           a.click()
           document.body.removeChild(a)
         })
-      </script>
-     <script>
-        function validation(){
-            var name=document.getElementById("uname")
-            var email=document.getElementById("email")
-            var comment=document.getElementById("message")
+      <script type="text/javascript">
+        const form = document.getElementById('form');
+        const uname = document.getElementById('uname');
+        const email = document.getElementById('email');
+        const message = document.getElementById('message');
+        var u=0;
+        var em=0;
+        var me=0;
 
-            if(name.value==""){
-            alert("enter a name");
-            return false;
+        form.addEventListener('submit', e => {
+            e.preventDefault();
+            u=0;
+            em=0;
+            me=0;
+            validateInputs();
+            if (u==0 && em==0 && me==0) {
+              e.target.submit();
             }
-            else if(email.value==""){
-                alert("no email entered");
-                return false;
-            }
-            else if(comment.value==""){
-                alert("enter a message");
-                return false;
-            }
-            else if(comment.value.length<10){
-                alert("enter more than 10 letters");
-                return false;
-            }
-            else{
-                return true;
+        });
+
+        const setError = (element, message) => {
+            const inputControl = element.parentElement;
+            const errorDisplay = inputControl.querySelector('.error');
+
+            errorDisplay.innerText = message;
+            inputControl.classList.add('error');
+            inputControl.classList.remove('success');
+        };
+
+        const setSuccess = element => {
+            const inputControl = element.parentElement;
+            const errorDisplay = inputControl.querySelector('.error');
+
+            errorDisplay.innerText = '';
+            inputControl.classList.add('success');
+            inputControl.classList.remove('error');
+        };
+
+        const isValidEmail = email => {
+            const re = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+            return re.test(String(email).toLowerCase());
+        };
+
+        const isValidName = uname => {
+            const re = /^[a-zA-Z]+(?: [a-zA-Z]+)*$/;
+            return re.test(String(uname).toLowerCase());
+        };
+
+        const validateInputs = () => {
+            const usernameValue = uname.value.trim();
+            const emailValue = email.value.trim();
+            const messageValue = message.value.trim();
+
+            if (usernameValue === '') {
+                setError(uname, 'Name is required');
+                u=1;
+            } else if (!isValidName(usernameValue)) {
+                setError(uname, 'Provide a valid Name');
+                u=1;
+            } else {
+                setSuccess(uname);
+                u=0;
             }
 
-        }
+            if (emailValue === '') {
+                setError(email, 'Email is required');
+                em=1;
+            } else if (!isValidEmail(emailValue)) {
+                setError(email, 'Provide a valid email address');
+                em=1;
+            } else {
+                setSuccess(email);
+                em=0;
+            }
+
+            if (messageValue === '') {
+                setError(message, 'Message is required');
+                me=1;
+            } else if (messageValue.length < 10) {
+                setError(message, 'Message must be at least 10 characters');
+                me=1;
+            } else {
+                setSuccess(message);
+                me=0;
+            }
+        };
     </script>
 </body>
 
