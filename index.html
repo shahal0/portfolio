@@ -299,7 +299,7 @@
             <p class="section-subtitle">How can you communicate?</p>
             <h6 class="section-title mb-5">Contact Me</h6>
             <!-- contact form -->
-            <form action="https://api.web3forms.com/submit" method="POST" class="contact-form col-md-10 col-lg-8 m-auto">
+            <form onsubmit="return validation()" action="https://api.web3forms.com/submit" method="POST" class="contact-form col-md-10 col-lg-8 m-auto">
                 <div class="form-row">
                     <div class="form-group col-sm-6">
                         <input type="hidden" name="access_key" value="c6bc6b87-bb9a-44f7-a93f-7677a770faa7">
@@ -358,6 +358,34 @@
           document.body.removeChild(a)
         })
       </script>
+     <script type="text/javascript">
+        function validation(){
+            var name=document.getElementById("uname")
+            var email=document.getElementById("email")
+            var comment=document.getElementById("message")
+
+            if(name.value==""){
+            alert("enter a name");
+            return false;
+            }
+            else if(email.value==""){
+                alert("no email entered");
+                return false;
+            }
+            else if(comment.value==""){
+                alert("enter a message");
+                return false;
+            }
+            else if(comment.value.length<10){
+                alert("enter more than 10 letters");
+                return false;
+            }
+            else{
+                return true;
+            }
+
+        }
+    </script>
 </body>
 
 </html>
