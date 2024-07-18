@@ -12,6 +12,7 @@
     <!-- Bootstrap + Meyawo main styles -->
     <link rel="stylesheet" href="css/meyawo.css">
     <link rel="icon" href="images/favicon.png">
+    
 </head>
 
 <body data-spy="scroll" data-target=".navbar" data-offset="40" id="home">
@@ -57,6 +58,8 @@
                 <span class="down">I am Shahal MV</span>
             </h1>
             <p class="header-subtitle">GOLANG DEVELOPER</p>
+
+            <button class="btn btn-primary">Visit My Works</button>
         </div>
     </header><!-- end of page header -->
 
@@ -301,19 +304,22 @@
             <!-- contact form -->
             <form id="form" action="https://api.web3forms.com/submit" method="POST" class="contact-form col-md-10 col-lg-8 m-auto">
                 <div class="form-row">
-                    <div class="form-group col-sm-6">
+                    <div class="form-group col-sm-6" id="form">
                         <input type="hidden" name="access_key" value="c6bc6b87-bb9a-44f7-a93f-7677a770faa7">
-                        <input type="text" size="50" class="form-control" placeholder="Your Name" required>
+                        <input type="text" size="50" class="form-control" placeholder="Your Name" id="uname">
+                        <div class="error"></div>
                     </div>
                     <div class="form-group col-sm-6">
-                        <input type="email" class="form-control" placeholder="Enter Email" requried id="email">
+                        <input type="text" class="form-control" placeholder="Enter Email" requried id="email" id="email">
+                        <div class="error"></div>
                     </div>
                     <div class="form-group col-sm-12">
-                        <textarea name="comment" id="comment" rows="6" class="form-control"
+                        <textarea name="message" id="message" rows="6" class="form-control"
                             placeholder="Write Something"></textarea>
+                            <div class="error"></div>
                     </div>
                     <div class="form-group col-sm-12 mt-3">
-                        <input type="submit" value="Send Message" class="btn btn-outline-primary rounded">
+                        <input type="submit" value="sumbit" class="btn btn-outline-primary rounded">
                     </div>
                 </div>
             </form><!-- end of contact form -->
@@ -347,17 +353,8 @@
 
     <!-- Meyawo js -->
     <script src="js/meyawo.js"></script>
-    <script>
-        document.getElementById("download-button").addEventListener('click', function(){
-          const pdfURL = "./images/CV.pdf"
-          const a = document.createElement('a')
-          a.href = pdfURL
-          a.download = 'cv.pdf'
-          document.body.appendChild(a)
-          a.click()
-          document.body.removeChild(a)
-        })
-      <script type="text/javascript">
+
+    <script type="text/javascript">
         const form = document.getElementById('form');
         const uname = document.getElementById('uname');
         const email = document.getElementById('email');
@@ -444,6 +441,7 @@
             }
         };
     </script>
+    
 </body>
 
 </html>
