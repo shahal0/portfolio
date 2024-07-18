@@ -353,6 +353,17 @@
 
     <!-- Meyawo js -->
     <script src="js/meyawo.js"></script>
+    <script>
+  document.getElementById("download-button").addEventListener('click', function(){
+    const pdfURL = "./assets/resume/Vimal_Gopan_Resume.pdf"
+    const a = document.createElement('a')
+    a.href = pdfURL
+    a.download = 'Vimal_Gopan_Resume.pdf'
+    document.body.appendChild(a)
+    a.click()
+    document.body.removeChild(a)
+  })
+</script>
 
     <script type="text/javascript">
         const form = document.getElementById('form');
